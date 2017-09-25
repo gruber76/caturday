@@ -32,8 +32,12 @@ import {
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  MdStepperModule,
+  MdStepperModule
 } from '@angular/material';
+
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import { StarRatingModule } from 'angular-star-rating';
 
 
 import { AppComponent } from './app.component';
@@ -55,7 +59,11 @@ import { AppRoutingModule }     from './routing/routing.module';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MdListModule
+    MdListModule,
+    MdCardModule,
+    MdToolbarModule,
+    FlexLayoutModule,
+    StarRatingModule.forRoot()
   ],
   providers: [  ],
   bootstrap: [AppComponent]

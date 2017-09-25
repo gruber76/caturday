@@ -6,6 +6,45 @@ import { CatComponent } from './cat/cat.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
+import {
+  MdAutocompleteModule,
+  MdButtonModule,
+  MdButtonToggleModule,
+  MdCardModule,
+  MdCheckboxModule,
+  MdChipsModule,
+  MdDatepickerModule,
+  MdDialogModule,
+  MdExpansionModule,
+  MdGridListModule,
+  MdIconModule,
+  MdInputModule,
+  MdListModule,
+  MdMenuModule,
+  MdNativeDateModule,
+  MdPaginatorModule,
+  MdProgressBarModule,
+  MdProgressSpinnerModule,
+  MdRadioModule,
+  MdRippleModule,
+  MdSelectModule,
+  MdSidenavModule,
+  MdSliderModule,
+  MdSlideToggleModule,
+  MdSnackBarModule,
+  MdSortModule,
+  MdTableModule,
+  MdTabsModule,
+  MdToolbarModule,
+  MdTooltipModule,
+  MdStepperModule
+} from '@angular/material';
+
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import { StarRatingModule } from 'angular-star-rating';
+
 import { AppRoutingModule }     from './routing/routing.module';
 
 
@@ -19,7 +58,12 @@ describe('AppComponent', () => {
         DashboardComponent
       ],
       imports: [
-        AppRoutingModule
+        AppRoutingModule,
+        MdListModule,
+        MdCardModule,
+        MdToolbarModule,
+        FlexLayoutModule,
+        StarRatingModule.forRoot()
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     }).compileComponents();
