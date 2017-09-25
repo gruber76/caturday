@@ -7,13 +7,18 @@ phases:
   pre_build:
     commands:
       - echo "Installing dependencies - `pwd`"
-      - cd app && npm install
+      - cd app && npm install && npm install -g @angular/cli
+      - cd ../frontend && npm install
       - echo "dependencies install completed `date`"
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
       - aws cloudformation package --template-file app-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file app-output_sam.yaml
       - aws cloudformation package --template-file test-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file test-output_sam.yaml
+      - echo "starting Angular build"
+      - ng test 
+      - ng build --env=${BUILD_ENV}
+
   post_build:
     commands:
       - echo "build completed on `date`"
