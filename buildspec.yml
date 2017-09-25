@@ -3,6 +3,7 @@ environment_variables:
     plaintext:
         S3_BUCKET: "caturday.joshuagruber.com"
         BUILD_ENV: "prod"
+        CHROME_BIN: "chromium-browser"
 
 phases:
   install:
