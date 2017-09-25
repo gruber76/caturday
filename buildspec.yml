@@ -12,7 +12,7 @@ phases:
     commands:
       - echo "Installing dependencies - `pwd`"
       - node --version
-      - apt -f install && apt-get update && apt-get install chromium
+      - apt-get update && apt-get install chromium-browser
       - cd app && npm install
       - cd frontend && npm install &&  npm install -g @angular/cli
       - echo "dependencies install completed `date`"
