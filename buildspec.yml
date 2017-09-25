@@ -1,4 +1,8 @@
 version: 0.1
+environment_variables:
+    plaintext:
+        S3_BUCKET: "caturday.joshuagruber.com"
+        BUILD_ENV: "prod"
 
 phases:
   install:
@@ -8,7 +12,7 @@ phases:
     commands:
       - echo "Installing dependencies - `pwd`"
       - node --version
-      - apt-get update && apt-get install chromium
+      - apt -f install && apt-get update && apt-get install chromium
       - cd app && npm install
       - cd frontend && npm install &&  npm install -g @angular/cli
       - echo "dependencies install completed `date`"
