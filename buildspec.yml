@@ -16,7 +16,7 @@ phases:
       - aws cloudformation package --template-file app-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file app-output_sam.yaml
       - aws cloudformation package --template-file test-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file test-output_sam.yaml
       - echo "starting Angular build"
-      - ng test 
+      - ng test --single-run
       - ng build --env=${BUILD_ENV}
 
   post_build:
