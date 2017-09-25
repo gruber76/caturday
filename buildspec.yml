@@ -7,6 +7,7 @@ phases:
   pre_build:
     commands:
       - echo "Installing dependencies - `pwd`"
+      - node --version
       - cd app && npm install
       - cd frontend && npm install &&  npm install -g @angular/cli
       - echo "dependencies install completed `date`"
