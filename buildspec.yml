@@ -4,7 +4,6 @@ environment_variables:
         S3_BUCKET: "caturday.joshuagruber.com"
         BUILD_ENV: "prod"
         CHROME_BIN: "chromium-browser"
-        CHROME_USER_DATA_DIR: "/tmp/chrome-test-profile"
 
 phases:
   install:
