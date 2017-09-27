@@ -33,4 +33,5 @@ phases:
 artifacts:
   files:
     - app-output_sam.yaml
+    - test-output_sam.yaml
   discard-paths: yes
