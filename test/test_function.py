@@ -16,11 +16,14 @@ def lambda_handler(event, context):
     # RUN INTEGRATION TESTS AGAINST API ENDPOINT (api_url) #
     ########################################################
 
-    if random.random() < .8:
-        _complete_job(job_id)
-    else:
-        _fail_job(job_id, 'Random test failure')
-    return 
+    _complete_job(job_id)
+    
+    ## How about we _don't_ randomly kill the tests?
+    #if random.random() < .8:
+    #    _complete_job(job_id)
+    #else:
+    #    _fail_job(job_id, 'Random test failure')
+    #return 
 
 def _complete_job(job_id):
     print("Random complete")
