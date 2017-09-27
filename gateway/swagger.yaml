@@ -1,0 +1,71 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "Caturday"
+host: "vj8moy2zpb.execute-api.us-east-1.amazonaws.com"
+basePath: "/Stage"
+schemes:
+- "https"
+paths:
+  /cat:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "NewCat"
+        required: true
+        schema:
+          $ref: "#/definitions/NewCat"
+      responses:
+        201:
+          description: "201 response"
+          schema:
+            $ref: "#/definitions/Cat"
+        405:
+          description: "405 response"
+  /cat/{catId}:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "catId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Cat"
+definitions:
+  NewCat:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      image:
+        type: "string"
+  Cat:
+    type: "object"
+    properties:
+      catId:
+        type: "integer"
+      title:
+        type: "string"
+      communityRating:
+        type: "number"
+        minimum: 0.0
+        maximum: 4.0
+      yourRating:
+        type: "number"
+        minimum: 0.0
+        maximum: 4.0
+      image:
+        type: "string"
+        format: "uri"

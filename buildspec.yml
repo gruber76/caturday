@@ -14,17 +14,17 @@ phases:
       - echo "Installing dependencies - `pwd`"
       - node --version
       - apt-get update && apt-get -y install chromium-browser
-      - cd app && npm install
-      - cd frontend && npm install &&  npm install -g @angular/cli
+      - cd app && npm install && npm install -g serverless typescript && serverless package
+      - cd frontend && npm install && npm install -g @angular/cli && npm i -g phantomjs-prebuilt
       - echo "dependencies install completed `date`"
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
-      - aws cloudformation package --template-file app-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file app-output_sam.yaml
-      - aws cloudformation package --template-file test-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file test-output_sam.yaml
+      - aws cloudformation package --template-file app/.serverless/cloudformation-template-update-stack.json --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file app-output_sam.yaml
       - echo "starting Angular build"
       - cd frontend && ng test --single-run --progress false --log-level verbose
       - cd frontend && ng build --env=${BUILD_ENV}
+      - aws cloudformation package  --s3-bucket $BUILD_OUTPUT_BUCKET
 
   post_build:
     commands:
@@ -33,5 +33,4 @@ phases:
 artifacts:
   files:
     - app-output_sam.yaml
-    - test-output_sam.yaml
   discard-paths: yes
