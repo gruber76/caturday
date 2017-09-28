@@ -8,7 +8,7 @@ basePath: "/Stage"
 schemes:
 - "https"
 paths:
-  /cat:
+  /cats:
     post:
       consumes:
       - "application/json"
@@ -27,7 +27,7 @@ paths:
             $ref: "#/definitions/Cat"
         405:
           description: "405 response"
-  /cat/{catId}:
+  /cats/{catId}:
     get:
       consumes:
       - "application/json"

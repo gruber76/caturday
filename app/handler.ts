@@ -2,37 +2,36 @@ import { Handler, Context, Callback } from 'aws-lambda';
 import { DynamoDB } from 'aws-sdk';
 
 var ddb = new DynamoDB({apiVersion: '2012-08-10'});
+var docClient = new DynamoDB.DocumentClient({region: 'us-east-2'});
 
-interface Response {
-  statusCode: number;
-  body: string;
-}
 
 const catHandler: Handler = (event: any, contect: Context, callback: Callback) => {
-
-  if (event.queryStringParameters !== null && event.queryStringParameters !== undefined && event.queryStringParameters.catId) {
-    var catId =event.queryStringParameters.catId;
+  if (event.catId || event.pathParameters !== null && event.pathParameters !== undefined && event.pathParameters.catId) {
+    var catId = event.catId || event.pathParameters.catId;
+    console.log('catId: ' + catId);
     var params = {
         TableName: 'si-cats',
         Key: {
-          'catId': {N: catId }
-        },
-        ProjectionExpression: 'image, title'
+          'catId': +catId 
+        }
+        , ProjectionExpression: 'catId, title, image'
       };
-    ddb.getItem(params, function(err, data) {
+      docClient.get(params, function(err, data) {
       if (err) {
-        callback(new Error('Database Response Error'), new Response({statusCode: 500, body: JSON.stringify({error: err})}));
+        console.log('Database Response Error: ' + JSON.stringify(err));
+        callback(new Error('Database Response Error'), {statusCode: 500, body: JSON.stringify({error: err})});
       } else {
         callback(undefined, {
           statusCode: 200,
-          body: JSON.stringify({
-            data
-          })
+          body: JSON.stringify(
+            data.Item
+          )
         })
       }
     })
   } else {
-    callback(new Error('No ID provided'), new Response({statusCode: 500, body: {}}))
+    console.log('No ID Provided in event: ' + JSON.stringify(event));
+    callback(new Error('No ID provided'), {statusCode: 500, body: '' + JSON.stringify(event)});
   }
 
 

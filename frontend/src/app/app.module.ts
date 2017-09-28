@@ -35,7 +35,7 @@ import {
   MdStepperModule
 } from '@angular/material';
 
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { StarRatingModule } from 'angular-star-rating';
 
@@ -45,7 +45,10 @@ import { CatComponent } from './cat/cat.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { AppRoutingModule }     from './routing/routing.module';
+import { AppRoutingModule } from './routing/routing.module';
+
+import { HttpModule } from '@angular/http';
+
 
 
 @NgModule({
@@ -63,7 +66,8 @@ import { AppRoutingModule }     from './routing/routing.module';
     MdCardModule,
     MdToolbarModule,
     FlexLayoutModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    HttpModule
   ],
   providers: [  ],
   bootstrap: [AppComponent]
