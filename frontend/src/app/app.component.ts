@@ -10,6 +10,7 @@ import {CognitoUtil, LoggedInCallback} from './service/cognito.service';
 })
 
 export class AppComponent implements OnInit, LoggedInCallback {
+        title = 'app';
 
       constructor(public awsUtil: AwsUtil, public userService: UserLoginService, public cognito: CognitoUtil) {
           console.log('AppComponent: constructor');
