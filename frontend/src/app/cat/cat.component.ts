@@ -6,6 +6,7 @@ import { Cat, HttpCatService } from '../model';
 import { StarRatingModule } from 'angular-star-rating';
 import { MdCardModule } from '@angular/material';
 
+
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -51,4 +52,7 @@ export class CatComponent implements OnInit {
     ;
   }
 
+  private rateCat() {
+    // ToDo: authenticate before rating.
+  }
 }

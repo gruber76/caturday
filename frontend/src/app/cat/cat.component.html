@@ -1,11 +1,11 @@
 <p>
   cat works! (on cat {{id}})
 </p>
-<md-card>
+<md-card class="cat-card">
   <md-card-title>{{cat.title}}</md-card-title>
   <img md-card-image class="cat-pic" src="{{cat.image}}" />
   <md-card-actions>
-      <star-rating-comp [starType]="'svg'" [hoverEnabled]="true" [rating]="cat.communityRating"></star-rating-comp>                       
+      <star-rating-comp [starType]="'svg'" [hoverEnabled]="true" [rating]="cat.communityRating" (onClick)="rateCat()"></star-rating-comp>                       
 
   </md-card-actions>
 

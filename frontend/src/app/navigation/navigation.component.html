@@ -1,10 +1,18 @@
 
   <md-nav-list>
       <h2 class="md-toolbar-tools">Navigation Menu</h2>
-    <a md-list-item [routerLink]="['/dashboard']">
+    <a md-list-item [routerLink]="['']">
       Home
+    </a>
+    <a md-list-item *ngIf="!userLoginService.isLoggedin" [routerLink]="['/home/login']">
+      Login
+    </a>
+    <a md-list-item *ngIf="userLoginService.isLoggedin" [routerLink]="['/securehome/logout']">
+      Logout
     </a>
     <a md-list-item [routerLink]="['/cat', 5]">
       Random Cat
     </a>
   </md-nav-list>
+
+
